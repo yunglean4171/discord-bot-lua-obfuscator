@@ -19,6 +19,7 @@ git clone https://github.com/yunglean4171/discord-bot-lua-obfuscator.git
 pip install -r requirements.txt
 ```
 - Edit lines 10 & 11 with your discord bot token and channel ID
+
 ![](https://i.imgur.com/rmBojkN.png)
 - Start bot by running this command:
 ```
