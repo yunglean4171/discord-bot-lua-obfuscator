@@ -1,6 +1,6 @@
 # discord-bot-lua-obfuscator (python 3.7.9)
 
-# Preview:
+# Preview: https://youtu.be/ft7_UrsT348
 
 Simple discord bot written in python obfuscating lua files sent by user on specified channel. Useful for securing your lua scripts (work with fivem/roblox etc resources).
 
@@ -13,6 +13,10 @@ Simple discord bot written in python obfuscating lua files sent by user on speci
 - clone this repo by running this command: 
 ```
 git clone https://github.com/yunglean4171/discord-bot-lua-obfuscator.git
+```
+- Install required packages by running this command:
+```
+pip install -r requirements.txt
 ```
 - Edit lines 10 & 11 with your discord bot token and channel ID
 ![](https://i.imgur.com/rmBojkN.png)
