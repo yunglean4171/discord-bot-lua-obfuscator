@@ -48,7 +48,7 @@ def obfuscation(path, author):
                 line = line + originalupload_data + '\n'
             out_file.write(line)
 
-    #executing script and makeing new file with obfuscated output
+    #executing script and making new file with obfuscated output
     output = subprocess.getoutput(f'lua {copy}')
 
     if os.path.exists(f"{file_path}\\obfuscated\\{author}-obfuscated.lua"):
