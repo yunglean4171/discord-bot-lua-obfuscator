@@ -1,22 +1,20 @@
 from importlib.resources import path
 import discord
-from discord.ext import commands
 import requests
 import os
-from os import system
 import subprocess
 import shutil
 
-token = "yourtoken"
+token = "your token goes here"
 channel_id = 0000000000000
 
-file_path = os.path.abspath(os.path.dirname(__file__))
+intents = discord.Intents.default()
+intents.message_content = True
 
-bot = commands.Bot(command_prefix="!")
-bot.remove_command("help")
+bot = discord.Client(intents=intents, guilds=True)
 
 def obfuscation(path, author):
-    copy = f"{file_path}\\obfuscated\\{author}.lua"
+    copy = f"{os.getcwd()}/obfuscated/{author}.lua"
 
     #removing duplicates
     if os.path.exists(copy):
@@ -26,7 +24,7 @@ def obfuscation(path, author):
     shutil.copyfile(path, copy)
 
     #copying obfuscate file to copied one
-    text_file = open(f"{file_path}\\obfuscate.lua", "r")
+    text_file = open(f"{os.getcwd()}/obfuscate.lua", "r")
     data = text_file.read()
     text_file.close()
     f = open(copy, "a")
@@ -51,10 +49,10 @@ def obfuscation(path, author):
     #executing script and making new file with obfuscated output
     output = subprocess.getoutput(f'lua {copy}')
 
-    if os.path.exists(f"{file_path}\\obfuscated\\{author}-obfuscated.lua"):
-        os.remove(f"{file_path}\\obfuscated\\{author}-obfuscated.lua")
+    if os.path.exists(f"{os.getcwd()}/obfuscated/{author}-obfuscated.lua"):
+        os.remove(f"{os.getcwd()}/obfuscated/{author}-obfuscated.lua")
 
-    f = open(f"{file_path}\\obfuscated\\{author}-obfuscated.lua", "a")
+    f = open(f"{os.getcwd()}/obfuscated/{author}-obfuscated.lua", "a")
     f.write(output)
     f.close()
 
@@ -80,8 +78,8 @@ async def on_message(message):
                         embed=discord.Embed(title=f"***Wrong file extension!***", description=f"only ``.lua`` allowed", color=0xFF3357)
                         message = await channel.send(embed=embed)
                     else:
-                        uploads_dir = f"{file_path}\\uploads\\"
-                        obfuscated_dir = f"{file_path}\\obfuscated\\"
+                        uploads_dir = f"{os.getcwd()}/uploads"
+                        obfuscated_dir = f"{os.getcwd()}/obfuscated"
 
                         if not os.path.exists(uploads_dir):
                             os.makedirs(uploads_dir)
@@ -91,7 +89,7 @@ async def on_message(message):
                         print(f'\nNew lua script received from {author}.')
                         print(f'Attachment Link: {message.attachments[0].url}\n')
                         response = requests.get(url)
-                        path = f"{file_path}\\uploads\\{author}.lua"
+                        path = f"{os.getcwd()}/uploads/{author}.lua"
 
                         if os.path.exists(path):
                             os.remove(path)
@@ -99,7 +97,7 @@ async def on_message(message):
                         open(path, "wb").write(response.content)
                         obfuscation(path, author)
                         embed=discord.Embed(title="File has been obfuscated", color=0x3357FF)
-                        await channel.send(embed=embed, file=discord.File(f"{file_path}\\obfuscated\\{author}-obfuscated.lua"))
+                        await channel.send(embed=embed, file=discord.File(f"{os.getcwd()}/obfuscated/{author}-obfuscated.lua"))
     except:
         pass
 
