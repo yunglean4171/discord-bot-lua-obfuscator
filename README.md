@@ -2,7 +2,7 @@
 
 Simple discord bot written in python obfuscating lua files sent by user on specified channel. Useful for securing your lua scripts (work with fivem/roblox etc resources).
 
-## Build with:
+## Built with:
 - Discord.py 
 
 ## Installation
