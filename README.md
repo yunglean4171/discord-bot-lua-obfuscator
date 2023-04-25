@@ -4,6 +4,7 @@ Simple discord bot written in python obfuscating lua files sent by user on speci
 
 ## Built with:
 - Discord.py 
+- [Nertigel nObfuscator](https://github.com/nertigel/nObfuscator)
 
 ## Installation
 - Install lua for your os: https://www.lua.org/download.html
